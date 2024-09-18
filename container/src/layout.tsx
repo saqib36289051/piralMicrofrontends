@@ -97,7 +97,7 @@ export const layout: Partial<ComponentsState> = {
         <nav className="navbar navbar-light navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3">
           <div className="container">
             <Link className="navbar-brand" to="/">
-              Piral
+              Micro Fronteds
             </Link>
             <button
               aria-label="Toggle navigation"

@@ -1,22 +1,29 @@
 import * as React from 'react';
+import "./Page.scss";
+import Badge from './components/ui/Badge';
+import { useFetchHook } from './hooks/useFetchHook';
 
 export default () => {
+  const { data } = useFetchHook('/Grievance')
   return (
-    <>
-      <h1>Title</h1>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat reiciendis illum qui nulla adipisci, laudantium
-        vitae atque dicta blanditiis ab. Quae deleniti eum sapiente temporibus tenetur, maxime quibusdam iure nisi.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus assumenda adipisci autem et nam quis, corporis
-        maxime id? Commodi maiores eligendi similique velit porro consectetur! Voluptates quo autem omnis deserunt?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis similique veritatis nesciunt non esse commodi
-        eligendi fugit officia earum distinctio. Mollitia blanditiis iusto cum pariatur quaerat fuga qui molestias
-        delectus?
-      </p>
-    </>
+    <div>
+      <h1>Grievence desk</h1>
+      {
+        data?.map((item: any) => {
+          return <div key={item.id} className='card'>
+            <h6>{item?.userName}</h6>
+            <div>
+              {
+                item?.types?.map(i => <Badge key={i.id}>
+                  {
+                    i?.takeCustomValue ? i?.customValue : i?.name
+                  }</Badge>)
+              }
+            </div>
+          </div>;
+        })
+      }
+
+    </div>
   );
 };
